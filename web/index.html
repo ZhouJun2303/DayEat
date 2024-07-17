@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>每周随机吃什么</title>
+    <script>
+        // const meals = ['飦集', '猪角', '半斤牛肉', '大米先生', '老乡鸡', '兰州拉面', '猪脚饭', "肥肠粉", "鸡公煲"];
+        // const webhookUrl = 'https://open.feishu.cn/open-apis/bot/v2/hook/3447cff8-3872-4dd8-acd5-6867159b781a'; // 替换为您实际的Webhook URL
+
+        // function getRandomMeal(previousMeals) {
+        //     const availableMeals = meals.filter(meal => !previousMeals.includes(meal));
+        //     if (availableMeals.length === 0) {
+        //         return '这周没有更多独特的餐点了！';
+        //     }
+        //     const randomIndex = Math.floor(Math.random() * availableMeals.length);
+        //     const randomMeal = availableMeals[randomIndex];
+        //     return randomMeal;
+        // }
+
+        // function sendToFeishu(msg) {
+        //     const message = {
+        //         msg_type: 'text',
+        //         content: {
+        //             text: msg
+        //         }
+        //     };
+
+        //     if (window.fetch) {
+        //         window.fetch(webhookUrl, {
+        //             method: 'POST',
+        //             headers: {
+        //                 'Content-Type': 'application/json'
+        //             },
+        //             body: JSON.stringify(message)
+        //         })
+        //         .then(response => {
+        //             console.log('消息发送至飞书');
+        //         })
+        //         .catch(error => {
+        //             console.error('发送消息至飞书出错:', error);
+        //         });
+        //     } else {
+        //         console.error('当前浏览器不支持fetch函数');
+        //     }
+        // }
+
+        // // 示例用法:
+        // let previousMeals = [];
+        // let message = '';
+        // for (let i = 0; i < 5; i++) {
+        //     const randomMeal = getRandomMeal(previousMeals);
+        //     previousMeals.push(randomMeal);
+        //     message += `第 ${i + 1} 天: ${randomMeal}\n`;
+        // }
+        // sendToFeishu(message);
+
+
+    </script>
+</head>
+
+<body>
+    <h1>每周随机吃什么</h1>
+    <button id="myButton">Click me</button>
+
+    <script>
+        document.getElementById("myButton").addEventListener("click", function () {
+            sendToFeishu();
+        });
+
+        function sendToFeishu() {
+            var xhr = new XMLHttpRequest();
+            var url = "http://192.168.11.46:8080/RandomDayEat";
+            xhr.open("post", url, false);
+            xhr.setRequestHeader("Content-Type", "application/json");
+            xhr.onreadystatechange = function () {
+                var data = xhr.responseText;
+                if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+                    alert(data);
+                } else {
+                    alert(data);
+                }
+            };
+            xhr.send(JSON.stringify({ values: "" }));
+        }
+    </script>
+</body>
+
+</html>
